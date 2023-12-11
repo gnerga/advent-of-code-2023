@@ -8,40 +8,13 @@ import java.util.List;
 
 public class Main {
 
-    static final int ZERO_IN_ASCII_CODE = 48;
-    static final int NINE_IN_ASCII_CODE = 57;
+    private static final String INPUT_PATH = "src/main/resources/input.txt";
+    private static final String TEST_PATH = "src/main/resources/test.txt";
+    private static final String TEST_2_PATH = "src/main/resources/test2.txt";
     public static void main(String[] args) {
-        List<String> inputData = readInputFile("src/main/resources/input.txt");
+        List<String> inputData = readInputFile(INPUT_PATH);
 
-        int result = 0;
-        boolean isFirst = true;
-        String number;
-        String digit;
-
-        for(String line : inputData) {
-            number = "";
-            digit = "";
-            for (char value : line.toCharArray()) {
-                if (isNumber(value)) {
-                    digit = String.valueOf(value);
-                    if(isFirst) {
-                        number = digit;
-                        isFirst = false;
-                    }
-                }
-            }
-            number += digit;
-            result += Integer.parseInt(number);
-            isFirst = true;
-            System.out.println(number);
-        }
-        System.out.println("-----------------");
-        System.out.println("Result: " + result);
-    }
-
-    public static boolean isNumber(char value) {
-        return value >= ZERO_IN_ASCII_CODE
-                && value <= NINE_IN_ASCII_CODE;
+        System.out.println("Result: " + DayOne.run(inputData, true));
     }
 
     public static List<String> readInputFile(String path) {
